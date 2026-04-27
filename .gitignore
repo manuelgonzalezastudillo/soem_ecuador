@@ -1,0 +1,20 @@
+# MATLAB temporary files
+*.asv
+*.m~
+
+# Dynare temporary files (generated during compilation)
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Archive folder (keep locally, not in repo)
+archive/

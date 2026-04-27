@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Replication Package: Fiscal Consolidations in Commodity-Exporting Countries"
+authors:
+  - family-names: "González-Astudillo"
+    given-names: "Manuel"
+    email: "manuel.p.gonzalez-astudillo@frb.gov"
+    affiliation: "Board of Governors of the Federal Reserve System"
+  - family-names: "Guerra-Salas"
+    given-names: "Juan"
+    email: "jguerra@bcentral.cl"
+    affiliation: "Central Bank of Chile"
+  - family-names: "Lipton"
+    given-names: "Avi"
+    email: "alipton@g.harvard.edu"
+    affiliation: "Harvard University"
+version: 1.0.0
+date-released: 2026-04-27
+url: "https://github.com/[username]/SOEM_Ecuador"
+repository-code: "https://github.com/[username]/SOEM_Ecuador"
+keywords:
+  - DSGE model
+  - Fiscal policy
+  - Fiscal consolidation
+  - Small open economy
+  - Commodity exporting countries
+  - Ecuador
+  - Bayesian estimation
+  - Dynare
+license: MIT

@@ -1,0 +1,11 @@
+[cluster]
+Name = Local
+Members = n1
+
+[node]
+Name = n1
+ComputerName = localhost
+CPUnbr = 8
+NumberOfThreadsPerJob = 4
+DynarePath = /opt/dynare/4.5.6/lib/dynare/matlab/
+MatlabOctavePath = matlab
