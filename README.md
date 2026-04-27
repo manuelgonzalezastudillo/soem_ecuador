@@ -136,8 +136,8 @@ All data are publicly available or derived from publicly available sources.
    ```
 4. Clone this repository:
    ```bash
-   git clone https://github.com/[username]/SOEM_Ecuador.git
-   cd SOEM_Ecuador
+   git clone https://github.com/manuelgonzalezastudillo/soem_ecuador.git
+   cd soem_ecuador
    ```
 
 ### Hardware Requirements

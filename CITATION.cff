@@ -16,8 +16,8 @@ authors:
     affiliation: "Harvard University"
 version: 1.0.0
 date-released: 2026-04-27
-url: "https://github.com/[username]/SOEM_Ecuador"
-repository-code: "https://github.com/[username]/SOEM_Ecuador"
+url: "https://github.com/manuelgonzalezastudillo/soem_ecuador"
+repository-code: "https://github.com/manuelgonzalezastudillo/soem_ecuador"
 keywords:
   - DSGE model
   - Fiscal policy
