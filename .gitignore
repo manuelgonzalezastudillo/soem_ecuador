@@ -16,8 +16,11 @@ Thumbs.db
 .idea/
 *.sublime-*
 
-# Archive folder (keep locally, not in repo)
+# Archive folder (development materials - keep locally, not in repo)
 archive/
+
+# Temporary R files
+.Rhistory
 
 # Large intermediate simulation results (not needed for replication)
 all_simulations_*.mat

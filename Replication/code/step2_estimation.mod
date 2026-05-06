@@ -1040,17 +1040,17 @@ end;
 //M_.hessian_eq_zero=0;
 options_.Opt6Numb= 50000;
 
-estimation(datafile='../../data/analysis/estim_data.xlsx', mode_compute=6, mh_replic=1000000, mh_jscale=.25, mh_nblocks=2, mh_drop=0.5, plot_priors=0, cova_compute=1);
-//estimation(datafile='../../data/analysis/estim_data.xlsx', mode_file = 'SOE_Estimation_mh_mode.mat', mode_compute=0, mh_replic=1000000, mh_jscale=0.03, mh_nblocks=2, mh_drop=0.5, plot_priors=0);
+estimation(datafile='../data/estim_data.xlsx', mode_compute=6, mh_replic=1000000, mh_jscale=.25, mh_nblocks=2, mh_drop=0.5, plot_priors=0, cova_compute=1);
+//estimation(datafile='../data/estim_data.xlsx', mode_file = 'SOE_Estimation_mh_mode.mat', mode_compute=0, mh_replic=1000000, mh_jscale=0.03, mh_nblocks=2, mh_drop=0.5, plot_priors=0);
 
 identification(parameter_set=posterior_mean);
    
 
 //mymap = [1 0 0 ;0 1 0; 0 0 1;0 0 0; 1 1 0; .588 .294 0 ; 0 1 1;.96 .96 .96 ];
 
-//shock_decomposition(datafile='../../data/analysis/estim_data.xlsx',parameter_set=calibration, use_shock_groups, colormap=mymap, nograph) gam_YNCo_obs gam_C_obs gam_I_obs hours_obs
+//shock_decomposition(datafile='../data/estim_data.xlsx',parameter_set=calibration, use_shock_groups, colormap=mymap, nograph) gam_YNCo_obs gam_C_obs gam_I_obs hours_obs
 //xi_obs pCostar_obs YCo_obs gam_G_obs Rstar_obs Ystar_obs ratio_BY_obs ratio_FY_obs gam_Ig_obs gam_TR_obs ratio_TBY_obs gama_YNCo_obs;
-//shock_decomposition(datafile='../../data/analysis/estim_data.xlsx',parameter_set=calibration, use_shock_groups, colormap=mymap, nograph) gam_YNCo_obs gam_C_obs gam_I_obs hours_obs
+//shock_decomposition(datafile='../data/estim_data.xlsx',parameter_set=calibration, use_shock_groups, colormap=mymap, nograph) gam_YNCo_obs gam_C_obs gam_I_obs hours_obs
 //xi_obs pCostar_obs YCo_obs gam_G_obs Rstar_obs Ystar_obs ratio_BY_obs gam_Ig_obs gam_TR_obs ratio_TBY_obs gama_YNCo_obs;
 
 

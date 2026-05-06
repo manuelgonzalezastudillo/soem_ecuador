@@ -2,7 +2,7 @@
 
 clear all;clc;close all;
 addpath '/Users/avilipton/Documents/Dynare/6.2-x86_64/matlab'
-dynare SOE_Decomposition.mod 
+dynare step3_decomposition.mod 
 
 all_vars = {'pCostar','g_c','g_i','tr','ratio_BY','b_y','f_y','xi_a','gdp_nco','c','i','ratio_TBY','c_o','c_r','h_o','h_r'};
     
@@ -43,7 +43,7 @@ print('oil_irf','-depsc')
 
 clear all;clc;close all;
 addpath '/Applications/Dynare/5.1/matlab'
-dynare SOE_Decomposition.mod 
+dynare step3_decomposition.mod 
 
 all_vars = {'zeta','g_c','g_i','tr','ratio_BY','b_y','f_y','xi_a','gdp_nco','c','i','ratio_TBY','c_o','c_r','h_o','h_r'};
     

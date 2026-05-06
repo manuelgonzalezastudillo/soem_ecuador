@@ -55,7 +55,7 @@ corr_y_vars = corr_y_matrix(:,1);
 %                ratio_BY_obs,ratio_TBY_obs,gam_rer_obs,...
 %                Rstar_obs,Ystar_obs,G_obs,hours_obs,gama_YNCo_obs
 data_id = [1;2;3;12;17;7;9;8;4;5;6;14;15];
-data = readtable('../../data/analysis/estim_data.xlsx');
+data = readtable('../data/estim_data.xlsx');
 data = table2array(data);
 data = data(:,data_id);
 data = array2table(data,'VariableNames',varlist);
@@ -156,7 +156,11 @@ vardecomp_table_nome = array2table(round([Technology(var_index) Foreign(var_inde
                               'VariableNames',group_names,'RowNames',oo_.var_list(var_index));
 
 %% Plot shock decomposition
-dir  = '/mq/manuel_projects/SOEM_EC/code/baseline_model_noobspublicprivateexternaldebt/';
+% Create output directory if it doesn't exist
+if ~exist('../output/figures', 'dir')
+    mkdir('../output/figures');
+end
+dir  = '../output/figures/';
 shockdecomparrayvars = oo_.shock_decomposition(70:83,:,:);
 shockdecomparray = [sum(shockdecomparrayvars(:,Technology_id,:),2) sum(shockdecomparrayvars(:,Foreign_id,:),2) sum(shockdecomparrayvars(:,Oil_id,:),2)...
                     sum(shockdecomparrayvars(:,Risk_id,:),2) sum(shockdecomparrayvars(:,Preference_id,:),2) sum(shockdecomparrayvars(:,Fiscal_id,:),2)];
@@ -213,9 +217,9 @@ figure44 = figure;
 Delta_b_model = 100*(oo_.SmoothedVariables.ratio_BY-oo_.steady_state(45)*(1-1/oo_.steady_state(52))/oo_.steady_state(24));
 
 % Load data from Excel
-[data_q,txt_q] = xlsread('../../data/processed/data.xlsx','quarterly','A1:S81'); % 2000:Q1 - 2019Q4
-[data_m,txt_m] = xlsread('../../data/processed/data.xlsx','monthly');   % 2000:m1 - 2019:m12
-[data_a,txt_a] = xlsread('../../data/processed/data.xlsx','annual');    % 2000 - 2019
+[data_q,txt_q] = xlsread('../data/data.xlsx','quarterly','A1:S81'); % 2000:Q1 - 2019Q4
+[data_m,txt_m] = xlsread('../data/data.xlsx','monthly');   % 2000:m1 - 2019:m12
+[data_a,txt_a] = xlsread('../data/data.xlsx','annual');    % 2000 - 2019
 
 % Make monthly data quarterly
 data_mq(:,2:4) = movmean(data_m(:,2:4),[2 0]);         % rstar, oil price, embi        

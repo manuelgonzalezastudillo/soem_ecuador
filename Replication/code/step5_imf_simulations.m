@@ -3,7 +3,7 @@ addpath '/Users/avilipton/Documents/Dynare/6.2-x86_64/matlab'
 
 %% Consumption Tax
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 steady;
 x = .01*(oo_.steady_state(strmatch('y',M_.endo_names,'exact')))/(oo_.steady_state(strmatch('p',M_.endo_names,'exact'))*(oo_.steady_state(strmatch('c',M_.endo_names,'exact'))));
 
@@ -98,7 +98,7 @@ print('Consumption_Tax_IRF','-depsc')
 %% Labor Tax
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 steady;
 x = .01*(oo_.steady_state(strmatch('y',M_.endo_names,'exact')))/(oo_.steady_state(strmatch('w',M_.endo_names,'exact'))*(1-omega)*(oo_.steady_state(strmatch('h_o',M_.endo_names,'exact'))));
@@ -195,7 +195,7 @@ print('Labor_Tax_IRF','-depsc')
 %% Capital Tax
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 steady;
 x = .01*(oo_.steady_state(strmatch('y',M_.endo_names,'exact')))/((oo_.steady_state(strmatch('rK',M_.endo_names,'exact'))-delta)*oo_.steady_state(strmatch('k',M_.endo_names,'exact'))/a_ss);
@@ -292,7 +292,7 @@ print('Capital_Tax_IRF','-depsc')
 %% Government Consumption
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 steady;
 
@@ -389,7 +389,7 @@ print('Government_Consumption_IRF','-depsc')
 %% Government Investment
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 
 steady;
@@ -486,7 +486,7 @@ print('Government_Investment_IRF','-depsc')
 %% Government Transfers
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 steady;
 
@@ -582,7 +582,7 @@ print('Transfers_IRF','-depsc')
 %% Oil Revenue
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 
 steady;
@@ -678,7 +678,7 @@ print('Oil_Revenue_IRF','-depsc')
 
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 steady;
 
@@ -832,7 +832,7 @@ print('IMF_Simulation','-depsc')
 
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 % Baseline
 steady;
@@ -1002,7 +1002,7 @@ print('IMF_Simulation_capital_control','-depsc')
 %% Bayesian Baseline IMF Simulation
 clear
 
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 steady;
 
 i_phi = 10;
@@ -1133,7 +1133,7 @@ save('pf_result2s.mat','all_simulations_2','-v7.3')
 
 
 clear
-dynare SOE_simulations_pf.mod 
+dynare step5_imf_simulations.mod 
 
 
 

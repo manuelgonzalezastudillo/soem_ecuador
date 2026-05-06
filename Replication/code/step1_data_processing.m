@@ -1,8 +1,8 @@
 clc; clear;
 %% Load data from Excel
-[data_q,txt_q] = xlsread('../data/processed/data.xlsx','quarterly','A1:S81'); % 2000:Q1 - 2019Q4
-[data_m,txt_m] = xlsread('../data/processed/data.xlsx','monthly');   % 2000:m1 - 2019:m12
-[data_a,txt_a] = xlsread('../data/processed/data.xlsx','annual');    % 2000 - 2019
+[data_q,txt_q] = xlsread('../data/data.xlsx','quarterly','A1:S81'); % 2000:Q1 - 2019Q4
+[data_m,txt_m] = xlsread('../data/data.xlsx','monthly');   % 2000:m1 - 2019:m12
+[data_a,txt_a] = xlsread('../data/data.xlsx','annual');    % 2000 - 2019
 
 %% Specify dates
 years = (2000:1:2019)';
@@ -57,7 +57,7 @@ var_names = [txt_q(1,2:end) txt_m(1,1:3) txt_m(1,12:16)];
 data_table = array2table(data_q,'VariableNames',var_names,'RowNames',txt_q(2:end,1));
 t = 2004:.25:2019.75;
 
-US_deflator = xlsread('../data/processed/data.xlsx','quarterly','K2:K82');
+US_deflator = xlsread('../data/data.xlsx','quarterly','K2:K82');
 US_inflation = US_deflator(2:end)./US_deflator(1:end-1);
 
 %% Make table with observables
@@ -132,7 +132,7 @@ data_matrix_demeaned = data_matrix - mean_matrix;
 %       
 % end
 dataobs_table = array2table(data_matrix_demeaned,'VariableNames',var_names_obs,'RowNames',quarters);              
-writetable(dataobs_table,'../data/analysis/estim_data.xlsx');
+writetable(dataobs_table,'../data/estim_data.xlsx');
 
 
 %% Compute Moments
@@ -282,7 +282,7 @@ gam_TR_obs = gam_TR;% - mean([data_matrix(1:end-1,8);gam_TR]);
 %Get quarterly path 2021-2026
 IMF_spending = [gam_G_obs(5:end),gam_IG_obs(5:end),gam_TR_obs(5:end)];
 IMF_spending = array2table(IMF_spending,'VariableNames',["gam_G_obs","gam_IG_obs","gam_TR_obs"]);
-writetable(IMF_spending,'../data/analysis/IMF_spending.xlsx')
+writetable(IMF_spending,'../data/IMF_spending.xlsx')
 
 
 
