@@ -36,6 +36,8 @@ This package replicates all empirical results in "Fiscal Consolidations in Commo
 
 All code is written in MATLAB and Dynare. **EViews is NOT required** - all necessary data files are provided.
 
+**✨ NEW:** The replication package now includes `run_replication.m`, a master script that automates all steps with a single command, includes environment validation, automatic Dynare detection, error handling, and progress reporting. Complete replication in ~15 minutes (excluding optional 8-hour estimation).
+
 ---
 
 ## Software Requirements
@@ -46,20 +48,23 @@ All code is written in MATLAB and Dynare. **EViews is NOT required** - all neces
    - Required toolboxes: Statistics and Machine Learning Toolbox, Optimization Toolbox
    - Download: https://www.mathworks.com/products/matlab.html
 
-2. **Dynare** 4.6 or later
+2. **Dynare** 4.5 or later (4.6+ recommended)
    - Free software for solving and estimating DSGE models
    - Download: https://www.dynare.org/
    - Installation instructions: https://www.dynare.org/resources/quick_start/
+   - Note: Dynare 4.5.6 has been tested and confirmed working
 
 ### Installation Steps
 
 1. Install MATLAB (R2016a or later)
 2. Install Dynare following instructions at https://www.dynare.org/
-3. Add Dynare to your MATLAB path:
+3. **Option A - Automatic (Recommended):** Run `run_replication.m` which will auto-detect Dynare in common installation locations, or prompt you for the path if needed
+4. **Option B - Manual:** Add Dynare to your MATLAB path:
    ```matlab
    addpath /path/to/dynare/matlab
+   savepath
    ```
-4. Navigate to the `Replication/code/` directory to run scripts
+5. Navigate to the `Replication/code/` directory to run scripts
 
 ### Optional Software
 
@@ -84,6 +89,9 @@ All code is written in MATLAB and Dynare. **EViews is NOT required** - all neces
 Replication/
 ├── README.md                          # This file
 ├── code/
+│   ├── run_replication.m              # ✨ NEW: Master script - automated execution
+│   ├── RUN_REPLICATION_GUIDE.md       # ✨ NEW: Detailed usage guide
+│   ├── TESTING_SUMMARY.md             # ✨ NEW: Testing documentation
 │   ├── step1_data_processing.m        # Data processing (< 1 min)
 │   ├── step2_estimation.mod           # Bayesian MCMC estimation (~8 hours)
 │   ├── step3_decomposition.mod        # Shock decomposition (~5 min)
@@ -146,6 +154,62 @@ See `data/DATA_SOURCES.md` for complete details on all data files.
 ---
 
 ## Replication Instructions
+
+### Quick Start - Automated Replication (Recommended)
+
+**NEW:** We now provide a master script that automates the entire replication process with a single command.
+
+**Navigate to the code directory:**
+```matlab
+cd /path/to/Replication/code/
+```
+
+**Run the complete replication:**
+```matlab
+run_replication()
+```
+
+This will:
+- ✅ Validate your MATLAB environment, toolboxes, and Dynare installation
+- ✅ Automatically detect Dynare path (or prompt you to provide it)
+- ✅ Run all 6 steps sequentially using pre-computed MCMC results
+- ✅ Display real-time progress with timing information
+- ✅ Complete in approximately **15 minutes** (skips 8-hour estimation)
+- ✅ Generate all tables, figures, and results
+
+**Additional options:**
+```matlab
+% Check environment only (no execution)
+run_replication('check_only', true)
+
+% Run with full MCMC estimation (~8 hours)
+run_replication('run_estimation', true)
+
+% Start from a specific step
+run_replication('start_from', 4)
+
+% Run only specific steps
+run_replication('steps', [1 4 5 6])
+
+% Verbose output with detailed progress
+run_replication('verbose', true)
+```
+
+**Documentation:**
+- See `code/RUN_REPLICATION_GUIDE.md` for detailed usage instructions
+- See `code/TESTING_SUMMARY.md` for testing documentation and troubleshooting
+
+**Requirements:**
+- MATLAB R2016a or later
+- Dynare 4.5 or later (auto-detected in common locations)
+- Statistics and Machine Learning Toolbox
+- Optimization Toolbox
+
+---
+
+### Manual Step-by-Step Instructions
+
+**Alternative method:** If you prefer to run steps manually or need finer control, follow these instructions.
 
 **IMPORTANT:** All commands should be run from within MATLAB, starting in the `Replication/code/` directory.
 
@@ -422,6 +486,29 @@ The views expressed in this paper are solely the responsibility of the authors a
 
 ---
 
-**Last Updated:** May 6, 2026  
-**Version:** 1.0  
+## Changelog
+
+### Version 1.1 (May 12, 2026)
+- **NEW:** Added `run_replication.m` master script for automated execution
+  - Single-command replication of all results
+  - Automatic environment validation (MATLAB, Dynare, toolboxes, files)
+  - Automatic Dynare path detection
+  - Real-time progress tracking with timing
+  - Comprehensive error handling
+  - Flexible execution options (check-only mode, custom steps, verbose output)
+- **NEW:** Added `RUN_REPLICATION_GUIDE.md` with detailed usage instructions
+- **NEW:** Added `TESTING_SUMMARY.md` with testing documentation
+- **UPDATED:** README with automated replication instructions
+- **UPDATED:** Dynare version requirement to 4.5+ (4.6+ recommended)
+- **TESTED:** Confirmed compatibility with Dynare 4.5.6
+
+### Version 1.0 (May 6, 2026)
+- Initial release of replication package
+- Manual step-by-step execution
+- Pre-computed MCMC results included
+
+---
+
+**Last Updated:** May 12, 2026  
+**Version:** 1.1  
 **Replication Package DOI:** [To be added upon publication]
