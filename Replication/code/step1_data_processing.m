@@ -65,28 +65,18 @@ var_names_obs = {'gam_YNCo_obs', 'gam_C_obs', 'gam_I_obs', 'xi_obs',...
                  'pCostar_obs', 'YCo_obs', 'gam_G_obs','gam_TR_obs', 'gam_Ig_obs',...
                  'ratio_BY_obs', 'ratio_FY_obs', 'ratio_TBY_obs', 'gam_rer_obs',...
                  'Rstar_obs', 'Ystar_obs','G_obs','hours_obs','gama_YNCo_obs'};
-% var_names_obs = {'gam_YNCo_obs', 'gam_C_obs', 'gam_I_obs', 'xi_obs',... 
-%                  'pCostar_obs', 'YCo_obs', 'gam_G_obs','gam_TR_obs', 'gam_Ig_obs',...
-%                  'ratio_BY_obs', 'ratio_TBY_obs', 'gam_rer_obs',...
-%                  'Rstar_obs', 'Ystar_obs','G_obs','hours_obs','gama_YNCo_obs'};
 
 % CHOOSE DATA FROM 2004:Q1             
 gam_YNCo_obs = data_table.Non_oil_GDP(17:end)./data_table.Non_oil_GDP(16:end-1);
 gam_C_obs = data_table.Private_consumption(17:end)./data_table.Private_consumption(16:end-1);
 gam_I_obs = data_table.Total_FBKF(17:end)./data_table.Total_FBKF(16:end-1);
-%gam_I_p_obs = (data_table.Total_FBKF(17:end) -
-%data_table.Gov_investment(17:end))./(data_table.Total_FBKF(16:end-1) - data_table.Gov_investment(16:end-1));
 xi_obs = (1+data_table.EMBI(17:end)/10000).^0.25;  
-%[~,pCostar_obs] = hpfilter(log(data_table.Oil_price(17:end)),1600);
 pCostar_obs = log(data_table.Oil_price(17:end));
-% [~,YCo_obs] = hpfilter(log(data_table.Oil_GDP(17:end)./data_table.Oil_price(17:end)),1600);
-[~,YCo_obs] = hpfilter(log(data_table.oil_production(17:end)),1600);
+[~,YCo_obs] = hpfilter(log(data_table.oil_production(17:end)));
 gam_G_obs = data_table.Gov_consumption(17:end)./data_table.Gov_consumption(16:end-1);
 gam_TR_obs = data_table.Gov_transfers_no_ss(17:end)./data_table.Gov_transfers_no_ss(16:end-1);
 gam_Ig_obs = data_table.Gov_investment(17:end)./data_table.Gov_investment(16:end-1);
 ratio_BY_obs = 1000*(data_table.Public_externaldebt(17:end)  - data_table.Public_externaldebt(16:end-1))./data_table.GDP(17:end);
-% ratio_BY_obs = data_table.D_Gov_Debt(17:end)/100;
-% ratio_BY_obs = 1000*(data_table.Public_externaldebt(17:end)+data_table.Public_internaldebt(17:end)  - (data_table.Public_externaldebt(16:end-1)+data_table.Public_internaldebt(16:end-1)))./data_table.GDP(17:end);
 ratio_FY_obs = 1000*(data_table.Private_externaldebt(17:end)  - data_table.Private_externaldebt(16:end-1))./data_table.GDP(17:end);
 gam_rer_obs = data_table.rer(17:end)./data_table.rer(16:end-1);
 Rstar_obs = log((1+data_table.Foreign_interest_rate(17:end)/100).^0.25) - log(US_inflation(17:end));
@@ -94,8 +84,8 @@ Ystar_sim = 100*ones(length(data_table.World_GDP_growth_qoq(17:end))+1,1);
 for i = 1:length(data_table.World_GDP_growth_qoq(17:end))
     Ystar_sim(i+1) = (1+data_table.World_GDP_growth_qoq(16+i)/100)*Ystar_sim(i); 
 end
-[~, Ystar_obs] = hpfilter(log(Ystar_sim(2:end)),1600);
-[~,G_obs] = hpfilter(log(data_table.Gov_consumption(17:end)),1600);
+[~, Ystar_obs] = hpfilter(log(Ystar_sim(2:end)));
+[~,G_obs] = hpfilter(log(data_table.Gov_consumption(17:end)));
 ratio_TBY_obs = (data_table.Trade_balance(17:end)./(data_table.GDP(17:end)));
 hours = log((1 - .01*data_table.Unemployment(17:end)).*data_table.Hours(17:end)./(24*5));
 for ii =2:length(hours)
@@ -104,7 +94,7 @@ for ii =2:length(hours)
     end
     
 end
-[~,hours] = hpfilter(hours(16:end),1600);
+[~,hours] = hpfilter(hours(16:end));
 hours_obs = [nan(15,1);hours];
 gama_YNCo_obs =  data_table.Non_oil_GDP(17:end)./data_table.Non_oil_GDP(13:end-4);
 
@@ -113,10 +103,6 @@ data_matrix = 100*[gam_YNCo_obs,gam_C_obs,gam_I_obs,xi_obs,pCostar_obs,YCo_obs,.
                gam_G_obs,gam_TR_obs,gam_Ig_obs,...
                ratio_BY_obs,ratio_FY_obs, ratio_TBY_obs,gam_rer_obs,...
                Rstar_obs,Ystar_obs,G_obs,hours_obs,gama_YNCo_obs];
-% data_matrix = 100*[gam_YNCo_obs,gam_C_obs,gam_I_obs,xi_obs,pCostar_obs,YCo_obs,...
-%                gam_G_obs,gam_TR_obs,gam_Ig_obs,...
-%                ratio_BY_obs,ratio_TBY_obs,gam_rer_obs,...
-%                Rstar_obs,Ystar_obs,G_obs,hours_obs,gama_YNCo_obs];
            
              
                                 
@@ -124,19 +110,12 @@ quarters = txt_q(18:end,1);
 mean_matrix = mean(data_matrix,'omitnan');
 data_matrix_demeaned = data_matrix - mean_matrix;
 
-% for ii = 1:length(var_names_obs)
-%     figure(1)
-%     plot(t,data_matrix_demeaned(:,ii))
-%     title(var_names_obs{ii})
-%     print(strcat('../data/',var_names_obs{ii}),'-dpdf')
-%       
-% end
 dataobs_table = array2table(data_matrix_demeaned,'VariableNames',var_names_obs,'RowNames',quarters);              
 writetable(dataobs_table,'../data/estim_data.xlsx');
 
 
 %% Compute Moments
-% clc
+
 disp('Correlations')
 for ii = 1:length(var_names_obs)
     disp(var_names_obs{ii})
@@ -180,9 +159,9 @@ EstMdl_Rstar_obs= estimate(Mdl,dataobs_table.Rstar_obs);
 
 
 % Spending Rules 
-[~,G_gap] = hpfilter(log(data_table.Gov_consumption(17:end).*data_table.US_Y_Deflator(17:end)./data_table.EC_Y_Deflator(17:end)),1600); % Government consumption in terms of domestic final good
-[~,BY_gap] = hpfilter(log(1000*((data_table.Public_externaldebt(17:end)+data_table.Public_internaldebt(17:end))./data_table.GDP(17:end))),1600);
-[~, y_gap] = hpfilter(log(data_table.GDP(17:end)),1600);
+[~,G_gap] = hpfilter(log(data_table.Gov_consumption(17:end).*data_table.US_Y_Deflator(17:end)./data_table.EC_Y_Deflator(17:end))); % Government consumption in terms of domestic final good
+[~,BY_gap] = hpfilter(log(1000*((data_table.Public_externaldebt(17:end)+data_table.Public_internaldebt(17:end))./data_table.GDP(17:end))));
+[~, y_gap] = hpfilter(log(data_table.GDP(17:end)));
 mdlG = fitlm([G_gap(1:end-1), y_gap(2:end), BY_gap(1:end-1)], G_gap(2:end), 'Intercept', false);
 
 G = data_table.Gov_consumption(17:end);
@@ -191,29 +170,26 @@ BY = data_table.Public_externaldebt(17:end)./data_table.GDP(17:end);
 
 yG = log(G(3:end))-log(G(2:end-1));
 XG = [ones(length(yG),1), log(G(2:end-1))-log(G(1:end-2)), log(Y(3:end))-log(Y(2:end-1)), log(BY(2:end-1))-log(BY(1:end-2))];
-% mdlDG = fitlm([log(G(2:end-1))-log(G(1:end-2)), log(Y(3:end))-log(Y(2:end-1)), log(BY(2:end-1))-log(BY(1:end-2))], log(G(3:end))-log(G(2:end-1)));
 coefG = lsqlin(XG'*XG,XG'*yG,[],[],[],[],[-Inf 0 -Inf -Inf],[Inf 1 Inf 0]);
 resG = yG - XG*coefG;
 sigG = sqrt((resG'*resG)/(length(yG)-size(XG,2)));
 
-[~,Ig_gap] = hpfilter(log(data_table.Gov_investment(17:end-1).*data_table.US_Y_Deflator(17:end-1)./data_table.EC_Y_Deflator(17:end-1)),1600); % Government investment in terms of domestic final good
+[~,Ig_gap] = hpfilter(log(data_table.Gov_investment(17:end-1).*data_table.US_Y_Deflator(17:end-1)./data_table.EC_Y_Deflator(17:end-1))); % Government investment in terms of domestic final good
 mdlIg = fitlm([Ig_gap(1:end-1), y_gap(2:end-1), BY_gap(1:end-2)], Ig_gap(2:end), 'Intercept', false);
 
 Ig = data_table.Gov_investment(17:end-1);
 yIg = log(Ig(3:end))-log(Ig(2:end-1));
 XIg = [ones(length(yIg),1), log(Ig(2:end-1))-log(Ig(1:end-2)), log(Y(3:end-1))-log(Y(2:end-2)), log(BY(2:end-2))-log(BY(1:end-3))];
-% mdlDIg = fitlm([log(Ig(2:end-1))-log(Ig(1:end-2)), log(Y(3:end-1))-log(Y(2:end-2)), log(BY(2:end-2))-log(BY(1:end-3))], log(Ig(3:end))-log(Ig(2:end-1)));
 coefIg = lsqlin(XIg'*XIg,XIg'*yIg,[],[],[],[],[-Inf 0 -Inf -Inf],[Inf 1 Inf 0]);
 resIg = yIg - XIg*coefIg;
 sigIg = sqrt((resIg'*resIg)/(length(yIg)-size(XIg,2)));
 
-[~,TR_gap] = hpfilter(log(data_table.Gov_transfers_no_ss(33:end-1)),1600); % Transfers in terms of foreign good (numeraire)
+[~,TR_gap] = hpfilter(log(data_table.Gov_transfers_no_ss(33:end-1))); % Transfers in terms of foreign good (numeraire)
 mdlTR = fitlm([TR_gap(1:end-1), y_gap(18:end-1), BY_gap(17:end-2)], TR_gap(2:end), 'Intercept', false);
 
 TR = data_table.Gov_transfers_no_ss(33:end-1);
 yTR = log(TR(3:end))-log(TR(2:end-1));
 XTR = [ones(length(yTR),1), log(TR(2:end-1))-log(TR(1:end-2)), log(Y(19:end-1))-log(Y(18:end-2)), log(BY(18:end-2))-log(BY(17:end-3))];
-% mdlDTR = fitlm([log(TR(2:end-1))-log(TR(1:end-2)), log(Y(19:end-1))-log(Y(18:end-2)), log(BY(18:end-2))-log(BY(17:end-3))],log(TR(3:end))-log(TR(2:end-1)));
 coefTR = lsqlin(XTR'*XTR,XTR'*yTR,[],[],[],[],[-Inf 0 -Inf -Inf],[Inf 1 Inf 0]);
 resTR = yTR - XTR*coefTR;
 sigTR = sqrt((resTR'*resTR)/(length(yTR)-size(XTR,2)));
@@ -275,9 +251,9 @@ end
 
 
 %Demean growth rates 
-gam_G_obs = gam_G;% - mean([data_matrix(:,7);gam_G]);
-gam_IG_obs = gam_IG ;%- mean([data_matrix(1:end-1,9);gam_IG]);
-gam_TR_obs = gam_TR;% - mean([data_matrix(1:end-1,8);gam_TR]);
+gam_G_obs = gam_G;
+gam_IG_obs = gam_IG ;
+gam_TR_obs = gam_TR;
 
 %Get quarterly path 2021-2026
 IMF_spending = [gam_G_obs(5:end),gam_IG_obs(5:end),gam_TR_obs(5:end)];
