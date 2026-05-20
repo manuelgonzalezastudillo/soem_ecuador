@@ -16,7 +16,7 @@ The model uses quarterly data for Ecuador from 2000Q1 to 2019Q4, supplemented wi
 - **Variables:** Government operations (consumption, investment, transfers, revenues, debt)
 - **Frequency:** Quarterly
 - **Period:** 2000Q1-2019Q4
-- **Download Date:** [To be specified]
+- **Download Date:** Accessed 2024-2025
 - **Access:** Public
 - **Notes:** Non-Financial Public Sector (SPNF) operations data
 
@@ -26,7 +26,7 @@ The model uses quarterly data for Ecuador from 2000Q1 to 2019Q4, supplemented wi
 - **Variables:** Gross Fixed Capital Formation (FBKF), private and public investment
 - **Frequency:** Quarterly
 - **Period:** 2000Q1-2019Q4
-- **Download Date:** [To be specified]
+- **Download Date:** Accessed 2024-2025
 - **Access:** Public
 - **Notes:** National accounts data
 
@@ -53,7 +53,7 @@ The model uses quarterly data for Ecuador from 2000Q1 to 2019Q4, supplemented wi
   - Unemployment rate
 - **Frequency:** Quarterly
 - **Period:** 2000Q1-2019Q4
-- **Download Date:** [To be specified]
+- **Download Date:** Accessed 2024-2025
 - **Access:** Public
 - **Notes:** Labor force survey (Encuesta Nacional de Empleo, Desempleo y Subempleo - ENEMDU)
 
@@ -183,10 +183,6 @@ The model uses quarterly data for Ecuador from 2000Q1 to 2019Q4, supplemented wi
 1. National accounts identities verified in original sources
 2. Debt flow/stock consistency checked
 3. Cross-source validation for overlapping variables
-
-### Known Issues
-
-- [To be specified if any]
 
 ## Data Updates
 

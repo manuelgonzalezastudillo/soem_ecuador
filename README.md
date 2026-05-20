@@ -17,7 +17,13 @@
 
 **The complete replication package is located in the [`Replication/`](Replication/) directory.**
 
-This package contains all code and data necessary to replicate the tables and figures in the published paper. Please see [`Replication/README.md`](Replication/README.md) for detailed instructions.
+This package contains all code and data necessary to replicate the tables and figures in the published paper. 
+
+### Documentation
+
+- **[`Replication/README.md`](Replication/README.md)** - Complete replication instructions
+- **[`Replication/REPLICATION_CHECKLIST.md`](Replication/REPLICATION_CHECKLIST.md)** - Journal requirements compliance checklist
+- **[`Replication/data/DATA_SOURCES.md`](Replication/data/DATA_SOURCES.md)** - Data sources documentation
 
 ### Quick Start
 
@@ -123,6 +129,6 @@ Previous development materials, journal correspondence, and literature reference
 
 ---
 
-**Last Updated:** May 6, 2026  
-**Version:** 1.0  
+**Last Updated:** May 20, 2026  
+**Version:** 1.2 (Journal Submission)  
 **Repository:** https://github.com/manuelgonzalezastudillo/soem_ecuador
